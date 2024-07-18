@@ -47,6 +47,8 @@ class InventoryCrudController extends CrudController
         CRUD::column('to_be_received');
         CRUD::column('end_of_day');
         CRUD::column('sublimation');
+
+        $this->crud->setListView('admin.inventory');
     }
 
     /**
@@ -57,16 +59,7 @@ class InventoryCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation([
-            'date' => 'required|date',
-            'start_of_day' => 'required|integer|min:0',
-            'warehouse_orders' => 'required|integer|min:0',
-            'praxair_supply_orders' => 'required|integer|min:0',
-            'online_orders' => 'required|integer|min:0',
-            'to_be_received' => 'required|integer|min:0',
-            'end_of_day' => 'required|integer|min:0',
-            'sublimation' => 'required|integer|min:0',
-        ]);
+        CRUD::setValidation(InventoryRequest::class);
 
         CRUD::field('date')->type('date');
         CRUD::field('start_of_day')->type('number');

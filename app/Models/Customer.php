@@ -11,5 +11,13 @@ class Customer extends Model
   use CrudTrait;
   use HasFactory;
 
-  protected $fillable = ['name', 'email', 'phone'];
+  protected $fillable = [
+    'name',
+    'email',
+    'phone',
+    'address',
+    'city',
+    'postal_code',
+    'province'
+  ];
 }

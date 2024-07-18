@@ -49,10 +49,9 @@ class UserCrudController extends CrudController
             'label' => 'Roles',
         ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        // Add actions (buttons) to the list view
+        CRUD::addButtonFromView('line', 'update', 'crud::buttons.update', 'beginning');
+        CRUD::addButtonFromView('line', 'delete', 'crud::buttons.delete', 'end');
     }
 
     /**

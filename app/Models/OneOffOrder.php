@@ -11,5 +11,12 @@ class OneOffOrder extends Model
   use CrudTrait;
   use HasFactory;
 
-  protected $fillable = ['customer_name', 'order_details', 'total_cost'];
+  protected $fillable = [
+    'order_number',
+    'customer_name',
+    'item',
+    'quantity',
+    'price',
+    'order_date',
+  ];
 }

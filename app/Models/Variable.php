@@ -11,5 +11,8 @@ class Variable extends Model
   use CrudTrait;
   use HasFactory;
 
-  protected $fillable = ['name', 'value'];
+  protected $fillable = [
+    'name',
+    'value',
+  ];
 }

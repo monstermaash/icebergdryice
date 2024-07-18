@@ -29,7 +29,6 @@ class Order extends Model
         'pickup_delivery',
         'status',
         'delivery_date',
-        'delivery_time',
         'notes',
         'total_cost',
     ];

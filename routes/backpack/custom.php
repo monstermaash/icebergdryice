@@ -44,24 +44,24 @@ Route::group([
     Route::crud('log-files', 'LogFilesCrudController');
 
     // Reports
+    Route::crud('inventory', 'InventoryCrudController');
     Route::get('inventory', function () {
         return view('vendor.backpack.base.inventory');
     });
 
+    Route::crud('warehouse-sales', 'WarehouseSaleCrudController');
     Route::get('warehouse-sales', function () {
         return view('vendor.backpack.base.warehouse_sales');
     });
 
     //Others
+    Route::crud('manual-payments', 'ManualPaymentCrudController');
     Route::get('manual-payments', function () {
         return view('vendor.backpack.base.manual_payments');
     })->name('manual-payments');
 
+    Route::crud('emails', 'EmailCrudController');
     Route::get('emails', function () {
         return view('vendor.backpack.base.emails');
     })->name('emails');
-    Route::crud('manual-payments', 'ManualPaymentCrudController');
-    Route::crud('emails', 'EmailCrudController');
-    Route::crud('warehouse-sale', 'WarehouseSaleCrudController');
-    Route::crud('inventory', 'InventoryCrudController');
 });

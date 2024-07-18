@@ -14,9 +14,12 @@ class OneOffOrderRequest extends FormRequest
   public function rules()
   {
     return [
+      'order_number' => 'required|string|max:255',
       'customer_name' => 'required|string|max:255',
-      'order_details' => 'required|string',
-      'total_cost' => 'required|numeric|min:0',
+      'item' => 'required|string|max:255',
+      'quantity' => 'required|integer|min:1',
+      'price' => 'required|numeric|min:0',
+      'order_date' => 'required|date',
     ];
   }
 }

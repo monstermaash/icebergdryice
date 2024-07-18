@@ -11,5 +11,19 @@ class IceOrder extends Model
   use CrudTrait;
   use HasFactory;
 
-  protected $fillable = ['supplier', 'order_date', 'amount', 'cost'];
+  protected $fillable = [
+    'date',
+    'supplier_name',
+    'ice_cost',
+    'ice_invoice',
+    'border_cost',
+    'border_invoice',
+    'shipper_name',
+    'shipper_cost',
+    'probill',
+    'other_description',
+    'other_cost',
+    'weight',
+    'totes',
+  ];
 }

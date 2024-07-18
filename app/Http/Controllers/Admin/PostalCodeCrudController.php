@@ -34,7 +34,7 @@ class PostalCodeCrudController extends CrudController
    */
   protected function setupListOperation()
   {
-    CRUD::column('code');
+    CRUD::column('code')->label('Postal Code');
     CRUD::column('zone');
   }
 
@@ -43,10 +43,19 @@ class PostalCodeCrudController extends CrudController
    */
   protected function setupCreateOperation()
   {
-    CRUD::setValidation(\App\Http\Requests\PostalCodeRequest::class);
+    CRUD::setValidation(PostalCodeRequest::class);
 
-    CRUD::field('code');
-    CRUD::field('zone');
+    CRUD::addField([
+      'name' => 'code',
+      'label' => 'Postal Code',
+      'type' => 'text',
+    ]);
+
+    CRUD::addField([
+      'name' => 'zone',
+      'label' => 'Zone',
+      'type' => 'text',
+    ]);
   }
 
   /**

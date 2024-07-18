@@ -37,7 +37,7 @@ class OrderCrudController extends CrudController
     CRUD::column('origin')->label('Origin');
     CRUD::column('recurring')->label('Recurring');
 
-    CRUD::addButtonFromView('line', 'view', 'order_view_button', 'beginning');
+    // CRUD::addButtonFromView('line', 'view', 'order_view_button', 'beginning');
   }
 
   protected function setupCreateOperation()
@@ -59,7 +59,7 @@ class OrderCrudController extends CrudController
     CRUD::field('province')->type('enum')->options(['BC' => 'BC', 'AB' => 'AB']);
     CRUD::field('country')->label('Country');
     CRUD::field('pickup_delivery')->type('enum')->options(['pickup' => 'Pickup', 'delivery' => 'Delivery']);
-    CRUD::field('status')->type('enum')->options(['Valid', 'Skip', 'Cancelled']);
+    CRUD::field('status')->type('enum')->options(['valid' => 'Valid', 'skip' => 'Skip', 'cancelled' => 'Cancelled']);
     CRUD::field('delivery_date')->type('datetime')->format('YYYY-MM-DD HH:mm');
     CRUD::field('notes')->type('textarea');
     CRUD::field('total_cost');

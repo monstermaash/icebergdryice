@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Http\Requests\LogFileRequest;
+use App\Models\LogFile;
 
 /**
  * Class LogFilesCrudController
@@ -19,23 +21,28 @@ class LogFilesCrudController extends CrudController
 
   public function setup()
   {
-    CRUD::setModel(\App\Models\LogFile::class);
+    CRUD::setModel(LogFile::class);
     CRUD::setRoute(config('backpack.base.route_prefix') . '/log-files');
     CRUD::setEntityNameStrings('log file', 'log files');
   }
 
   protected function setupListOperation()
   {
-    CRUD::column('id');
-    CRUD::column('file_name');
-    CRUD::column('created_at');
+    CRUD::column('log_id')->label('Log ID');
+    CRUD::column('user_id')->label('User ID');
+    CRUD::column('order_id')->label('Order ID');
+    CRUD::column('action_id')->label('Action ID');
+    CRUD::column('timestamp')->label('Timestamp');
   }
 
   protected function setupCreateOperation()
   {
-    CRUD::setValidation(\App\Http\Requests\LogFileRequest::class);
+    CRUD::setValidation(LogFileRequest::class);
 
-    CRUD::field('file_name');
+    CRUD::field('user_id')->label('User ID');
+    CRUD::field('order_id')->label('Order ID');
+    CRUD::field('action_id')->label('Action ID');
+    CRUD::field('timestamp')->label('Timestamp');
   }
 
   protected function setupUpdateOperation()

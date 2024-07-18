@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Http\Requests\VariableRequest;
 
 /**
  * Class VariablesCrudController
@@ -26,7 +27,6 @@ class VariablesCrudController extends CrudController
 
   protected function setupListOperation()
   {
-    CRUD::column('id');
     CRUD::column('name');
     CRUD::column('value');
   }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Http\Requests\CustomerRequest;
 
 /**
  * Class CustomersCrudController
@@ -26,19 +27,26 @@ class CustomersCrudController extends CrudController
 
   protected function setupListOperation()
   {
-    CRUD::column('id');
     CRUD::column('name');
     CRUD::column('email');
     CRUD::column('phone');
+    CRUD::column('address');
+    CRUD::column('city');
+    CRUD::column('postal_code');
+    CRUD::column('province');
   }
 
   protected function setupCreateOperation()
   {
-    CRUD::setValidation(\App\Http\Requests\CustomerRequest::class);
+    CRUD::setValidation(CustomerRequest::class);
 
     CRUD::field('name');
     CRUD::field('email');
     CRUD::field('phone');
+    CRUD::field('address');
+    CRUD::field('city');
+    CRUD::field('postal_code');
+    CRUD::field('province')->type('enum')->options(['BC' => 'BC', 'AB' => 'AB']);
   }
 
   protected function setupUpdateOperation()

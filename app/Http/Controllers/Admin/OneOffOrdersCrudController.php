@@ -2,47 +2,77 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\OneOffOrderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class OneOffOrdersCrudController
  * @package App\Http\Controllers\Admin
+ * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class OneOffOrdersCrudController extends CrudController
 {
-  use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-  use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-  use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-  use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-  use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-  public function setup()
-  {
-    CRUD::setModel(\App\Models\OneOffOrder::class);
-    CRUD::setRoute(config('backpack.base.route_prefix') . '/one-off-orders');
-    CRUD::setEntityNameStrings('one-off order', 'one-off orders');
-  }
+    /**
+     * Configure the CrudPanel object. Apply settings to all operations.
+     * 
+     * @return void
+     */
+    public function setup()
+    {
+        CRUD::setModel(\App\Models\OneOffOrder::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/one-off-order');
+        CRUD::setEntityNameStrings('one off order', 'one off orders');
+    }
 
-  protected function setupListOperation()
-  {
-    CRUD::column('id');
-    CRUD::column('customer_name');
-    CRUD::column('order_details');
-    CRUD::column('total_cost');
-  }
+    /**
+     * Define what happens when the List operation is loaded.
+     * 
+     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     * @return void
+     */
+    protected function setupListOperation()
+    {
+        CRUD::column('order_number');
+        CRUD::column('customer_name');
+        CRUD::column('item');
+        CRUD::column('quantity');
+        CRUD::column('price');
+        CRUD::column('order_date');
+    }
 
-  protected function setupCreateOperation()
-  {
-    CRUD::setValidation(\App\Http\Requests\OneOffOrderRequest::class);
+    /**
+     * Define what happens when the Create operation is loaded.
+     * 
+     * @see https://backpackforlaravel.com/docs/crud-operation-create
+     * @return void
+     */
+    protected function setupCreateOperation()
+    {
+        CRUD::setValidation(OneOffOrderRequest::class);
 
-    CRUD::field('customer_name');
-    CRUD::field('order_details');
-    CRUD::field('total_cost');
-  }
+        CRUD::field('order_number');
+        CRUD::field('customer_name');
+        CRUD::field('item');
+        CRUD::field('quantity');
+        CRUD::field('price');
+        CRUD::field('order_date');
+    }
 
-  protected function setupUpdateOperation()
-  {
-    $this->setupCreateOperation();
-  }
+    /**
+     * Define what happens when the Update operation is loaded.
+     * 
+     * @see https://backpackforlaravel.com/docs/crud-operation-update
+     * @return void
+     */
+    protected function setupUpdateOperation()
+    {
+        $this->setupCreateOperation();
+    }
 }

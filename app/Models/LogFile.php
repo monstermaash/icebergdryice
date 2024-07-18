@@ -11,5 +11,18 @@ class LogFile extends Model
   use CrudTrait;
   use HasFactory;
 
-  protected $fillable = ['file_name'];
+  protected $table = 'logs';
+  protected $primaryKey = 'log_id';
+
+  public $incrementing = true;
+  protected $keyType = 'int';
+
+  protected $fillable = [
+    'user_id',
+    'order_id',
+    'action_id',
+    'timestamp',
+  ];
+
+  public $timestamps = false;
 }

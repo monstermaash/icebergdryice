@@ -14,7 +14,10 @@ class LogFileRequest extends FormRequest
   public function rules()
   {
     return [
-      'file_name' => 'required|string|max:255',
+      'user_id' => 'required|exists:users,id',
+      'order_id' => 'required|exists:orders,id',
+      'action_id' => 'required|exists:actions,id',
+      'timestamp' => 'required|date',
     ];
   }
 }
