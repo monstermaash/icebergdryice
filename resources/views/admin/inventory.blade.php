@@ -10,114 +10,78 @@
 @endsection
 
 @section('content')
-<div class="row">
-  <!-- Month Cards -->
-  <div class="col-md-8">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Month</h5>
-        <div class="d-flex justify-content-between">
-          <div class="p-2">
-            <p><strong>1,000 lbs</strong></p>
-            <p>IN VOLUME</p>
-          </div>
-          <div class="p-2">
-            <p><strong>$30,000</strong></p>
-            <p>IN SALES</p>
-          </div>
-          <div class="p-2">
-            <p><strong>$25,000</strong></p>
-            <p>IN REVENUE</p>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <!-- Month Card -->
+      <div class="card mb-3 d-flex justify-content-between">
+        <div class="card-body">
+          <h5 class="card-title">Month</h5>
+          <p class="card-text">1,000 lbs in volume</p>
+          <p class="card-text">$30,000 in sales</p>
+          <p class="card-text">$25,000 in revenue</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <!-- On Hand Card -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">On Hand</h5>
+          <p class="card-text">{{ $onHand }} lbs</p>
+          <p class="card-text">Dry Ice on hand</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <!-- Today Card -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Today</h5>
+          <p class="card-text">50 lbs in volume</p>
+          <p class="card-text">$1,500 in sales</p>
+          <p class="card-text">$1,200 in revenue</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <!-- To Be Received Card -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">To Be Received</h5>
+          <p class="card-text">{{ $toBeReceived }} lbs</p>
+          <p class="card-text">Dry Ice to be received</p>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- On Hand Card -->
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">On Hand</h5>
-        <p><strong>1,405 lbs</strong></p>
-        <p>DRY ICE ON HAND</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Today Cards -->
-  <div class="col-md-8">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Today</h5>
-        <div class="d-flex justify-content-between">
-          <div class="p-2">
-            <p><strong>50 lbs</strong></p>
-            <p>IN VOLUME</p>
-          </div>
-          <div class="p-2">
-            <p><strong>$1,500</strong></p>
-            <p>IN SALES</p>
-          </div>
-          <div class="p-2">
-            <p><strong>$1,200</strong></p>
-            <p>IN REVENUE</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- To Be Received Card -->
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">To Be Received</h5>
-        <p><strong>1,200 lbs</strong></p>
-        <p>DRY ICE TO BE RECEIVED</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-md-12">
-    @include('crud::inc.grouped_errors')
-    <table id="crudTable" class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Start of Day</th>
-          <th>Warehouse Orders</th>
-          <th>Praxair Supply Orders</th>
-          <th>Online Orders</th>
-          <th>To Be Received</th>
-          <th>End of Day</th>
-          <th>Sublimation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07/10/2024</td>
-          <td>1405</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>1405</td>
-          <td>56</td>
-        </tr>
-        <tr>
-          <td>07/09/2024</td>
-          <td>1349</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>1349</td>
-          <td>54</td>
-        </tr>
-        <!-- Add more static rows as needed -->
-      </tbody>
-    </table>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Start of Day</th>
+        <th>Warehouse Orders</th>
+        <th>Praxair Supply Orders</th>
+        <th>Online Orders</th>
+        <th>To be Received</th>
+        <th>End of Day</th>
+        <th>Sublimation</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($entries as $entry)
+      <tr>
+        <td>{{ $entry->date }}</td>
+        <td>{{ $entry->start_of_day }}</td>
+        <td>{{ $entry->warehouse_orders }}</td>
+        <td>{{ $entry->praxair_supply_orders }}</td>
+        <td>{{ $entry->online_orders }}</td>
+        <td>{{ $entry->to_be_received }}</td>
+        <td>{{ $entry->end_of_day }}</td>
+        <td>{{ $entry->sublimation }}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 @endsection

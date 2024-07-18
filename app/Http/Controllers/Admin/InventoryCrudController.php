@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\InventoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Models\Inventory;
 
 /**
  * Class InventoryCrudController
@@ -29,6 +30,8 @@ class InventoryCrudController extends CrudController
         CRUD::setModel(\App\Models\Inventory::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/inventory');
         CRUD::setEntityNameStrings('inventory', 'inventories');
+
+        $this->crud->setListView('admin.inventory');
     }
 
     /**
@@ -47,6 +50,15 @@ class InventoryCrudController extends CrudController
         CRUD::column('to_be_received');
         CRUD::column('end_of_day');
         CRUD::column('sublimation');
+
+        // Example data, replace with actual data fetching logic
+        $entries = Inventory::all();
+        $onHand = Inventory::sum('end_of_day'); // Example calculation
+        $toBeReceived = Inventory::sum('to_be_received'); // Example calculation
+
+        view()->share('entries', $entries);
+        view()->share('onHand', $onHand);
+        view()->share('toBeReceived', $toBeReceived);
 
         $this->crud->setListView('admin.inventory');
     }

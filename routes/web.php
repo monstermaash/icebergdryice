@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InventoryPageController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +40,11 @@ Route::group([
     Route::crud('variables', 'VariablesCrudController');
     Route::crud('customers', 'CustomersCrudController');
     Route::crud('log-files', 'LogFilesCrudController');
+
+    // Reports
+    Route::get('/admin/inventory', [InventoryPageController::class, 'index'])->name('admin.inventory');
+    Route::crud('inventory', 'InventoryCrudController');
+    Route::crud('warehouse-sales', 'WarehouseSaleCrudController');
 });
 
 // require __DIR__ . '/auth.php';

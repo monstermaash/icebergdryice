@@ -9,10 +9,25 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    $lastOrders = Order::orderBy('delivery_date', 'desc')->take(5)->get();
-    $ccOrders = Order::where('origin', 'CC')->take(5)->get();
-    $recurringOrders = Order::where('recurring', 'recurring')->take(5)->get();
+    // Fetch data for cards
+    $totalSalesOnline = Order::where('origin', 'online')->sum('total_cost');
+    $totalSalesManual = Order::where('origin', 'manual')->sum('total_cost');
+    $dryIceUnitSold = Order::sum('amount_of_ice');
+    $styrofoamBoxUnitSold = Order::sum('amount_of_boxes');
 
-    return view('vendor.backpack.base.dashboard', compact('lastOrders', 'ccOrders', 'recurringOrders'));
+    // Fetch data for tables
+    $lastOrders = Order::latest()->take(10)->get();
+    $ccOrders = Order::where('origin', 'online')->get();
+    $recurringOrders = Order::where('recurring', 'recurring')->get();
+
+    return view('vendor.backpack.base.dashboard', compact(
+      'totalSalesOnline',
+      'totalSalesManual',
+      'dryIceUnitSold',
+      'styrofoamBoxUnitSold',
+      'lastOrders',
+      'ccOrders',
+      'recurringOrders'
+    ));
   }
 }
