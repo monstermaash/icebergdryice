@@ -9,6 +9,7 @@
         "backpack/crud": "^6.7",
         "backpack/permissionmanager": "^7.2",
         "backpack/theme-tabler": "^1.2",
+        "kyslik/column-sortable": "^6.6",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.9"

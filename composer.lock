@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db9f0d48fb7fbd71ce2b3e812fbcc586",
+    "content-hash": "25acf04162321f489e3e065c926bb597",
     "packages": [
         {
             "name": "backpack/basset",
@@ -82,16 +82,16 @@
         },
         {
             "name": "backpack/crud",
-            "version": "6.7.18",
+            "version": "6.7.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "6ec392cd80141d13663b3f4a7be1741f3ba65863"
+                "reference": "cb95ac0f4e38e94541b8a5d14e1460cd478e67f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/6ec392cd80141d13663b3f4a7be1741f3ba65863",
-                "reference": "6ec392cd80141d13663b3f4a7be1741f3ba65863",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/cb95ac0f4e38e94541b8a5d14e1460cd478e67f9",
+                "reference": "cb95ac0f4e38e94541b8a5d14e1460cd478e67f9",
                 "shasum": ""
             },
             "require": {
@@ -170,9 +170,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Backpack/CRUD/issues",
-                "source": "https://github.com/Laravel-Backpack/CRUD/tree/6.7.18"
+                "source": "https://github.com/Laravel-Backpack/CRUD/tree/6.7.20"
             },
-            "time": "2024-07-15T09:43:49+00:00"
+            "time": "2024-07-22T10:33:24+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -1578,6 +1578,67 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "kyslik/column-sortable",
+            "version": "6.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/column-sortable.git",
+                "reference": "0f753dfd34338e87a8964a3fb2cd10fa86174b3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/0f753dfd34338e87a8964a3fb2cd10fa86174b3c",
+                "reference": "0f753dfd34338e87a8964a3fb2cd10fa86174b3c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^8.5|^9.5.10|^10.5"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kyslik\\ColumnSortable\\ColumnSortableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "email": "martin.kiesel@gmail.com",
+                    "role": "Developer and maintainer"
+                }
+            ],
+            "description": "Package for handling column sorting in Laravel 6.x",
+            "keywords": [
+                "column",
+                "laravel",
+                "sort",
+                "sortable",
+                "sorting"
+            ],
+            "support": {
+                "issues": "https://github.com/Kyslik/column-sortable/issues",
+                "source": "https://github.com/Kyslik/column-sortable/tree/6.6.0"
+            },
+            "time": "2024-03-14T08:22:23+00:00"
         },
         {
             "name": "laravel/framework",

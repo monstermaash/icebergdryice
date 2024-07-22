@@ -1,8 +1,21 @@
 @extends(backpack_view('blank'))
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+@endsection
+
+@section('header')
+@include('vendor.backpack.base.inc.header')
+<section class="container-fluid">
+  <h2>
+    <span class="text-capitalize">Dashboard</span>
+    <small><a href="{{ url('admin/orders/create') }}" class="btn btn-sm btn-primary">+ New Order</a></small>
+  </h2>
+</section>
+@endsection
+
 @section('content')
 <div class="container-fluid">
-  <h2>Dashboard</h2>
   <div class="row mb-3">
     <div class="col-md-3">
       <div class="card text-center">

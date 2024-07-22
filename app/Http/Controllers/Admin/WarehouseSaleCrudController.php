@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\WarehouseSaleRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Models\WarehouseSale;
 
 /**
  * Class WarehouseSaleCrudController
@@ -29,6 +30,8 @@ class WarehouseSaleCrudController extends CrudController
         CRUD::setModel(\App\Models\WarehouseSale::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/warehouse-sale');
         CRUD::setEntityNameStrings('warehouse sale', 'warehouse sales');
+
+        $this->crud->setListView('admin.warehouse_sales');
     }
 
     /**
@@ -45,6 +48,15 @@ class WarehouseSaleCrudController extends CrudController
         CRUD::column('bought');
         CRUD::column('expense');
         CRUD::column('net');
+
+        // Fetch entries to pass to the view
+        $entries = WarehouseSale::paginate(10);
+        view()->share('entries', $entries);
+
+        // Add action buttons
+        CRUD::addButtonFromModelFunction('line', 'preview', 'getPreviewButton', 'beginning');
+        CRUD::addButtonFromModelFunction('line', 'edit', 'getEditButton', 'end');
+        CRUD::addButtonFromModelFunction('line', 'delete', 'getDeleteButton', 'end');
     }
 
     /**
@@ -55,14 +67,7 @@ class WarehouseSaleCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation([
-            'date' => 'required|date',
-            'sold' => 'required|integer|min:0',
-            'income' => 'required|numeric|min:0',
-            'bought' => 'required|integer|min:0',
-            'expense' => 'required|numeric|min:0',
-            'net' => 'required|numeric',
-        ]);
+        CRUD::setValidation(WarehouseSaleRequest::class);
 
         CRUD::field('date');
         CRUD::field('sold');

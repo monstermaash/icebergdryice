@@ -52,7 +52,7 @@ class InventoryCrudController extends CrudController
         CRUD::column('sublimation');
 
         // Example data, replace with actual data fetching logic
-        $entries = Inventory::all();
+        $entries = Inventory::paginate(10); // Use pagination
         $onHand = Inventory::sum('end_of_day'); // Example calculation
         $toBeReceived = Inventory::sum('to_be_received'); // Example calculation
 
@@ -61,6 +61,11 @@ class InventoryCrudController extends CrudController
         view()->share('toBeReceived', $toBeReceived);
 
         $this->crud->setListView('admin.inventory');
+
+        // Add action buttons
+        CRUD::addButtonFromModelFunction('line', 'preview', 'getPreviewButton', 'beginning');
+        CRUD::addButtonFromModelFunction('line', 'edit', 'getEditButton', 'end');
+        CRUD::addButtonFromModelFunction('line', 'delete', 'getDeleteButton', 'end');
     }
 
     /**
