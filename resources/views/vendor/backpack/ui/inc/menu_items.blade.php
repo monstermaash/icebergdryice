@@ -16,7 +16,7 @@
 
 <x-backpack::menu-dropdown title="Reports" icon="la la-chart-bar">
   <x-backpack::menu-dropdown-item title="Inventory" icon="la la-warehouse" :link="backpack_url('inventory')" />
-  <x-backpack::menu-dropdown-item title="Warehouse Sales" icon="la la-dollar-sign" :link="backpack_url('warehouse-sale')" />
+  <x-backpack::menu-dropdown-item title="Warehouse Sales" icon="la la-dollar-sign" :link="backpack_url('warehouse-sales')" />
 </x-backpack::menu-dropdown>
 
 <x-backpack::menu-dropdown title="Others" icon="la la-ellipsis-h">

@@ -1,15 +1,15 @@
 @extends(backpack_view('blank'))
 
-@section('styles')
+<!-- @section('styles')
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endsection
+@endsection -->
 
 @section('header')
 @include('vendor.backpack.base.inc.header')
 <section class="container-fluid">
   <h2>
     <span class="text-capitalize">Warehouse Sale</span>
-    <small><a href="{{ url('admin/warehouse-sale/create') }}" class="btn btn-sm btn-primary">+ Add Warehouse Sale</a></small>
+    <small><a href="{{ url('admin/warehouse-sales/create') }}" class="btn btn-sm btn-primary">+ Add Warehouse Sale</a></small>
   </h2>
 </section>
 @endsection
@@ -54,6 +54,10 @@
 </div>
 @endsection
 
+@section('after_styles')
+@vite(['resources/scss/app.scss', 'resources/css/custom.css'])
+@endsection
+
 @section('after_scripts')
-<script src="{{ asset('js/app.js') }}"></script>
+@vite(['resources/js/app.js'])
 @endsection

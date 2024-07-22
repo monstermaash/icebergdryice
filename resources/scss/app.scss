@@ -1,0 +1,40 @@
+// Import Bootstrap functions first
+@import "~bootstrap/scss/functions";
+
+// Override Bootstrap variables
+$primary: #0256C5;
+
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.navbar .container .navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .container .contact {
+  display: flex;
+  gap: 60px;
+
+}
+
+.navbar .nav-link.admin {
+  padding-right: 16px;
+}
+
+.navbar .nav-link {
+  display: flex;
+}
+
+.btn-sm {
+  padding: 7px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+h2 {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+

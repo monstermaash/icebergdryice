@@ -1,8 +1,8 @@
 @extends(backpack_view('blank'))
 
-@section('styles')
+<!-- @section('styles')
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endsection
+@endsection -->
 
 @section('header')
 @include('vendor.backpack.base.inc.header')
@@ -157,4 +157,12 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('after_styles')
+@vite(['resources/scss/app.scss', 'resources/css/custom.css'])
+@endsection
+
+@section('after_scripts')
+@vite(['resources/js/app.js'])
 @endsection

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InventoryPageController;
+use App\Http\Controllers\Admin\WarehouseSaleCrudController;
 
 
 Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () {
+
     // Users
     Route::crud('users', 'UserCrudController');
     Route::crud('roles', 'RoleCrudController');
@@ -44,6 +46,7 @@ Route::group([
     // Reports
     Route::get('/admin/inventory', [InventoryPageController::class, 'index'])->name('admin.inventory');
     Route::crud('inventory', 'InventoryCrudController');
+    Route::get('/admin/warehouse-sales', [WarehouseSaleCrudController::class, 'index'])->name('admin.warehouse_sales');
     Route::crud('warehouse-sales', 'WarehouseSaleCrudController');
 });
 

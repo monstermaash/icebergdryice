@@ -28,7 +28,7 @@ class WarehouseSaleCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\WarehouseSale::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/warehouse-sale');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/warehouse-sales');
         CRUD::setEntityNameStrings('warehouse sale', 'warehouse sales');
 
         $this->crud->setListView('admin.warehouse_sales');
