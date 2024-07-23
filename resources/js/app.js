@@ -69,3 +69,18 @@ $(document).ready(function () {
     });
 });
 
+// Function to handle status cell coloring
+document.addEventListener('DOMContentLoaded', function () {
+    const statusCells = document.querySelectorAll('.status');
+    statusCells.forEach(cell => {
+      const status = cell.textContent.trim().toLowerCase();
+      if (status === 'valid') {
+        cell.classList.add('valid');
+      } else if (status === 'skip') {
+        cell.classList.add('skip');
+      } else if (status === 'cancelled') {
+        cell.classList.add('cancelled');
+      }
+    });
+  });
+

@@ -9,6 +9,8 @@
         "backpack/crud": "^6.7",
         "backpack/permissionmanager": "^7.2",
         "backpack/theme-tabler": "^1.2",
+        "blade-ui-kit/blade-heroicons": "^2.4",
+        "blade-ui-kit/blade-icons": "^1.6",
         "kyslik/column-sortable": "^6.6",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",

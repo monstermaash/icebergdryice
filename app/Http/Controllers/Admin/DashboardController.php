@@ -17,8 +17,8 @@ class DashboardController extends Controller
 
     // Fetch data for tables
     $lastOrders = Order::latest()->take(10)->get();
-    $ccOrders = Order::where('origin', 'online')->get();
-    $recurringOrders = Order::where('recurring', 'recurring')->get();
+    $ccOrders = Order::where('origin', 'online')->latest()->take(4)->get();
+    $recurringOrders = Order::where('recurring', 'recurring')->latest()->take(4)->get();
 
     return view('vendor.backpack.base.dashboard', compact(
       'totalSalesOnline',
