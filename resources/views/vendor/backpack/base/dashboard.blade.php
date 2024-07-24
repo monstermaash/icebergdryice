@@ -1,12 +1,11 @@
 @extends(backpack_view('blank'))
 
 @section('header')
-@include('vendor.backpack.base.inc.header')
-<section class="container-fluid">
+<section class="container-fluid header">
   <h2>
     <span class="title text-capitalize">Dashboard</span>
-    <small><a href="{{ url('admin/orders/create') }}" class="btn btn-add btn-sm">+ New Order</a></small>
   </h2>
+  <small><a href="{{ url('admin/orders/create') }}" class="btn btn-add btn-sm"><i class="la la-plus"></i> New Order</a></small>
 </section>
 @endsection
 
@@ -14,7 +13,7 @@
 <div class="container-fluid">
   <div class="row flex-row mb-3">
     <div class="col-md-3">
-      <div class="card text-center">
+      <div class="card dashboard text-center">
         <div class="card-header">
           Total Sales
         </div>
@@ -26,7 +25,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-center">
+      <div class="card dashboard text-center">
         <div class="card-header">
           Total Sales
         </div>
@@ -38,7 +37,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-center">
+      <div class="card dashboard text-center">
         <div class="card-header">
           Dry Ice Unit Sold
         </div>
@@ -49,7 +48,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-center">
+      <div class="card dashboard text-center">
         <div class="card-header">
           Styrofoam Box Unit Sold
         </div>

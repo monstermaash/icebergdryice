@@ -1,16 +1,11 @@
 @extends(backpack_view('blank'))
 
-<!-- @section('styles')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endsection -->
-
 @section('header')
-@include('vendor.backpack.base.inc.header')
-<section class="container-fluid">
+<section class="container-fluid header">
   <h2>
-    <span class="text-capitalize">Warehouse Sale</span>
-    <small><a href="{{ url('admin/warehouse-sales/create') }}" class="btn btn-sm btn-primary">+ Add Warehouse Sale</a></small>
+    <span class="title text-capitalize">Warehouse Sale</span>
   </h2>
+  <small><a href="{{ url('admin/warehouse-sales/create') }}" class="btn btn-add btn-sm btn-primary"><i class="la la-plus"></i> Add Warehouse Sale</a></small>
 </section>
 @endsection
 

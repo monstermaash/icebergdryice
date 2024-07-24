@@ -7,116 +7,29 @@ $primary: #0256C5;
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-:root {
-  --primary-color: #0256C5;
-  --background-color: #F5F6FA;
-  --text-color: #333333;
-  --card-background-color: #ffffff;
-  --card-header-background-color: rgba(var(--bs-dark-rgb), 1);
-  --table-header-background-color: rgba(var(--bs-dark-rgb), 1);
-  --status-valid-color: #00BD00;
-  --status-skip-color: rgb(255, 172, 17);
-  --status-cancelled-color: #FF3535;
-}
-
-[data-theme="dark"] {
-  --background-color: #121212;
-  --text-color: #ffffff;
-  --card-background-color: #1e1e1e;
-  --card-header-background-color: rgba(var(--bs-dark-rgb), 1);
-  --table-header-background-color: rgba(var(--bs-dark-rgb), 1);
-}
-
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.navbar .container .navbar-collapse {
-  display: flex;
-  justify-content: space-between;
-}
-
-.navbar .container .contact {
-  display: flex;
-  gap: 60px;
-}
-
-.navbar .container .contact a {
-  display: flex;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.navbar .container .contact .phone,
-.navbar .container .contact .email {
-  width: 25px;
-}
-
-.navbar .nav-link.text-white {
-  padding-right: 40px;
-}
-.navbar .nav-link.admin {
-  padding-right: 16px;
+  background-color: var(--tblr-body-bg);
+  color: var(--tblr-body-color);
 }
 
 .navbar .nav-link {
   display: flex;
 }
 
-
-.avatar.avatar-sm.rounded-circle {
-  background-color: #0256C5;
-}
-
-aside {
-  --bs-bg-opacity: 1 !important;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-}
-
-aside .navbar-nav .nav-item .nav-link {
-  padding: 10px 40px 10px 50px !important;
-}
-
-.navbar-vertical.navbar-expand-lg .navbar-collapse .nav-item.active:after {
-  border-color: #0256C5;
-  border-width: 3px;
-}
-
-aside .navbar-nav .nav-item .dropdown-item {
-  padding: 10px 75px !important;
-}
-
-.navbar.navbar-vertical {
-  position: fixed !important;
-  top: 110px;
-  width: 315px;
-}
-
 .container-fluid h2 .title {
   font-weight: 700;
 }
 
-.container-fluid h2 .btn-add {
-  padding: 15px 35px;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.page-body {
-  margin-left: 75px;
-}
-
-.btn-sm {
-  padding: 7px 16px;
-  font-size: 14px;
-  border-radius: 5px;
-}
-
-h2 {
+.container-fluid.header {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
+  padding: 0 24px 20px;
+}
+
+.container-fluid .btn-add {
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .row.flex-row {
@@ -137,23 +50,25 @@ h2 {
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  background-color: var(--card-background-color);
+  background-color: var(--tblr-body-bg-subtle);
 }
 
 .card-header {
   --bs-bg-opacity: 1 !important;
-  background-color: var(--table-header-background-color);
-  color: #fff;
+  background-color: rgba(var(--bs-dark-rgb), 1);
+  color: var(--tblr-secondary-text-emphasis);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 .card-body {
-  background-color: transparent;
+  background-color: var(--tblr-card-body);
   position: relative;
   padding: 16px 32px;
   text-align: left;
   height: 130px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .card-body h3 {
@@ -161,20 +76,51 @@ h2 {
 }
 
 .card-body .card-text {
-  color: #666666;
+  color: var(--tblr-card-text);
   font-size: 14px;
   transform: translateY(-40%);
 }
 
-.card-body .card-text.stat {
+.card.dashboard .card-body .card-text.stat {
   position: absolute;
   bottom: 5px;
   left: 32px;
   font-size: 16px;
+  width: fit-content;
 }
 
 .card-body .card-text span {
-  color: rgb(23, 194, 23);
+  color: var(--tblr-success);
+  margin-right: 4px;
+}
+
+.card .card-body.inventory {
+  height: fit-content;
+  padding: 16px 64px;
+}
+
+.card .card-body .stat {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+.card .card-body .stat.right {
+  flex-direction: column;
+}
+
+.card .card-body .stat h5 {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: 12px
+}
+
+.card .card-body .stat h5 span {
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .row .table-header {
@@ -196,21 +142,17 @@ h2 {
 
 .row table thead tr {
   --bs-bg-opacity: 1 !important;
-  background-color: var(--table-header-background-color);
-  color: var(--text-color);
-  text-transform: capitalize; 
-  padding: 10px 0;
+  background-color: rgba(var(--bs-dark-rgb), 1) !important;
+  color: var(--tblr-secondary-text-emphasis);
+  text-transform: capitalize;
+  padding: 10px 0;  
 }
 
 .row table thead tr th {
-  color: #ffffff;
+  color: var(--tblr-secondary-text-emphasis);
   text-transform: capitalize;
   font-size: 14px;
   font-weight: 500;
-}
-
-.row table tbody tr {
-  padding: 10px 5px;
 }
 
 .row table th,
@@ -221,9 +163,10 @@ h2 {
 }
 
 .row table tbody tr {
-  background-color: var(--card-background-color);
-  color: var(--text-color);
+  background-color: var(--tblr-card-body);
+  color: var(--tblr-body-color);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 5px;
 }
 
 .row table tbody tr td {
@@ -231,7 +174,22 @@ h2 {
 }
 
 .row table tbody tr:hover {
-  background-color: #f5f5f5; 
+  background-color: var(--tblr-secondary-bg-subtle);
+}
+
+.form-group.entries {
+  display: flex;
+  flex-direction: row-reverse;
+  float: inline-start;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.form-group .form-control {
+  width: 62px;
+  height: 23.14px;
+  font-size: 14px;
+  padding: 0;
 }
 
 /* Status Colors */
@@ -242,34 +200,30 @@ td.status {
 }
 
 .status.valid {
-  color: var(--status-valid-color);
+  color: var(--tblr-success);
   font-weight: bold;
 }
 
 .status.skip {
-  color: var(--status-skip-color);
+  color: var(--tblr-warning);
   font-weight: bold;
 }
 
 .status.cancelled {
-  color: var(--status-cancelled-color);
+  color: var(--tblr-danger);
   font-weight: bold;
 }
 
 .btn-add {
-  background-color: #0256C5;
+  background-color: var(--tblr-primary);
   border: none;
-  padding: 8px 16px;
-  color: #fff;
+  color: var(--tblr-light);
   border-radius: 4px;
 }
 
 .btn-add:hover {
   background-color: #0246a5;
-}
-
-footer {
-  display: none;
+  color: var(--tblr-light);
 }
 
 @media (min-width: 1400px) {
@@ -279,18 +233,6 @@ footer {
   .container-md,
   .container-sm,
   .container {
-    max-width: 1570px;
-  }
-
-  .container {
-    padding: 0 36px;
-  }
-
-  .navbar .container .nav-link.admin {
-    padding-right: 0;
-  }
-
-  .navbar .container .nav-link.home {
-    padding-left: 0;
+    max-width: 1328px;
   }
 }
