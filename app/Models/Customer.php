@@ -20,4 +20,9 @@ class Customer extends Model
     'postal_code',
     'province'
   ];
+
+  public function orders()
+  {
+    return $this->hasMany(Order::class, 'email', 'email');
+  }
 }

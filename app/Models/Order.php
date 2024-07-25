@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -32,4 +33,29 @@ class Order extends Model
         'notes',
         'total_cost',
     ];
+
+    public function scopeToday($query)
+    {
+        return $query->whereDate('delivery_date', Carbon::today());
+    }
+
+    public function scopeFuture($query)
+    {
+        return $query->whereDate('delivery_date', '>', Carbon::today());
+    }
+
+    public function scopePast($query)
+    {
+        return $query->whereDate('delivery_date', '<', Carbon::today());
+    }
+
+    public function scopeAll($query)
+    {
+        return $query;
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'email', 'email');
+    }
 }

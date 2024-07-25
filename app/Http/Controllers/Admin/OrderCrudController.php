@@ -6,6 +6,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\Customer;
+use Carbon\Carbon;
 
 class OrderCrudController extends CrudController
 {
@@ -37,7 +39,13 @@ class OrderCrudController extends CrudController
     CRUD::column('origin')->label('Origin');
     CRUD::column('recurring')->label('Recurring');
 
-    // CRUD::addButtonFromView('line', 'view', 'order_view_button', 'beginning');
+    $this->addCustomFilters();
+
+    // Add buttons to filter orders
+    CRUD::addButtonFromView('top', 'all_orders', 'orders_all');
+    CRUD::addButtonFromView('top', 'todays_orders', 'orders_today');
+    CRUD::addButtonFromView('top', 'future_orders', 'orders_future');
+    CRUD::addButtonFromView('top', 'past_orders', 'orders_past');
   }
 
   protected function setupCreateOperation()
@@ -68,5 +76,78 @@ class OrderCrudController extends CrudController
   protected function setupUpdateOperation()
   {
     $this->setupCreateOperation();
+  }
+
+  protected function addCustomFilters()
+  {
+    // $all = request()->query('all');
+    $today = request()->query('today');
+    $future = request()->query('future');
+    $past = request()->query('past');
+
+    if ($today) {
+      CRUD::addClause('whereDate', 'delivery_date', '=', Carbon::today()->toDateString());
+    } elseif ($future) {
+      CRUD::addClause('whereDate', 'delivery_date', '>', Carbon::today()->toDateString());
+    } elseif ($past) {
+      CRUD::addClause('whereDate', 'delivery_date', '<', Carbon::today()->toDateString());
+    }
+  }
+
+  protected function handleCustomerData($data)
+  {
+    $customer = Customer::updateOrCreate(
+      ['email' => $data['email']],
+      [
+        'name' => $data['customer_name'],
+        'phone' => $data['phone'],
+        'address' => $data['address'],
+        'city' => $data['city'],
+        'postal_code' => $data['postal_code'],
+        'province' => $data['province'],
+        'country' => $data['country']
+      ]
+    );
+    return $customer;
+  }
+
+  protected function saveOrder($data)
+  {
+    $customer = $this->handleCustomerData($data);
+    $data['customer_id'] = $customer->id;
+
+    return Order::create($data);
+  }
+
+  protected function updateOrder($data, $id)
+  {
+    $customer = $this->handleCustomerData($data);
+    $data['customer_id'] = $customer->id;
+
+    $order = Order::findOrFail($id);
+    $order->update($data);
+    return $order;
+  }
+
+  // Override store method to save order and customer
+  public function store()
+  {
+    $request = $this->crud->validateRequest();
+    $data = $request->all();
+
+    $this->saveOrder($data);
+
+    return $this->crud->performSaveAction();
+  }
+
+  // Override update method to update order and customer
+  public function update($id)
+  {
+    $request = $this->crud->validateRequest();
+    $data = $request->all();
+
+    $this->updateOrder($data, $id);
+
+    return $this->crud->performUpdateAction($id);
   }
 }
