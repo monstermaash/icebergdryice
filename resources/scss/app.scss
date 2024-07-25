@@ -177,6 +177,10 @@ body {
   background-color: var(--tblr-secondary-bg-subtle);
 }
 
+.row .table.recurring {
+  margin-top: 38px;
+}
+
 .form-group.entries {
   display: flex;
   flex-direction: row-reverse;

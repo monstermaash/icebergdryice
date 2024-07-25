@@ -69,7 +69,10 @@
             <tr>
               <th>Order #</th>
               <th>Customer</th>
+              <!-- <th>Address</th> -->
               <th>Delivery Date</th>
+              <!-- <th>Ice</th> -->
+              <!-- <th>Box</th> -->
               <th>Status</th>
               <th>Total</th>
               <th>Origin</th>
@@ -77,10 +80,13 @@
           </thead>
           <tbody>
             @foreach($lastOrders as $order)
-            <tr>
+            <tr data-href="{{ url('admin/orders/' . $order->id . '/show') }}">
               <td>{{ $order->id }}</td>
               <td>{{ $order->customer_name }}</td>
+              <!-- <td>{{ $order->address }}</td> -->
               <td>{{ $order->delivery_date }}</td>
+              <!-- <td>{{ $order->amount_of_ice }} lbs</td> -->
+              <!-- <td>{{ $order->amount_of_boxes }}</td> -->
               <td class="status">{{ $order->status }}</td>
               <td>${{ $order->total_cost }}</td>
               <td>{{ $order->origin }}</td>
@@ -99,30 +105,34 @@
         <table>
           <thead>
             <tr>
+              <th>Order #</th>
               <th>Customer</th>
+              <!-- <th>Address</th> -->
               <th>Delivery Date</th>
-              <th>Ice</th>
-              <th>Box</th>
-              <th>Address</th>
-              <th>Actions</th>
+              <!-- <th>Ice</th> -->
+              <!-- <th>Box</th> -->
+              <th>Status</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
             @foreach($ccOrders as $order)
-            <tr>
+            <tr data-href="{{ url('admin/orders/' . $order->id . '/show') }}">
+              <td>{{ $order->id }}</td>
               <td>{{ $order->customer_name }}</td>
+              <!-- <td>{{ $order->address }}</td> -->
               <td>{{ $order->delivery_date }}</td>
-              <td>{{ $order->amount_of_ice }} lbs</td>
-              <td>{{ $order->amount_of_boxes }}</td>
-              <td>{{ $order->address }}</td>
-              <td><a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm">View</a></td>
+              <!-- <td>{{ $order->amount_of_ice }} lbs</td> -->
+              <!-- <td>{{ $order->amount_of_boxes }}</td> -->
+              <td class="status">{{ $order->status }}</td>
+              <td>${{ $order->total_cost }}</td>
             </tr>
             @endforeach
           </tbody>
         </table>
       </div>
 
-      <div class="table">
+      <div class="table recurring">
         <div class="table-header">
           Recurring Orders
         </div>
@@ -131,21 +141,25 @@
             <tr>
               <th>Order #</th>
               <th>Customer</th>
+              <!-- <th>Address</th> -->
               <th>Delivery Date</th>
+              <!-- <th>Ice</th> -->
+              <!-- <th>Box</th> -->
               <th>Status</th>
               <th>Total</th>
-              <th>Origin</th>
             </tr>
           </thead>
           <tbody>
             @foreach($recurringOrders as $order)
-            <tr>
+            <tr data-href="{{ url('admin/orders/' . $order->id . '/show') }}">
               <td>{{ $order->id }}</td>
               <td>{{ $order->customer_name }}</td>
+              <!-- <td>{{ $order->address }}</td> -->
               <td>{{ $order->delivery_date }}</td>
+              <!-- <td>{{ $order->amount_of_ice }} lbs</td> -->
+              <!-- <td>{{ $order->amount_of_boxes }}</td> -->
               <td class="status">{{ $order->status }}</td>
               <td>${{ $order->total_cost }}</td>
-              <td>{{ $order->origin }}</td>
             </tr>
             @endforeach
           </tbody>
@@ -162,4 +176,15 @@
 
 @section('after_scripts')
 @vite(['resources/js/app.js'])
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('tr[data-href]');
+    rows.forEach(row => {
+      row.addEventListener('click', function() {
+        window.location.href = this.dataset.href;
+      });
+      row.style.cursor = 'pointer'; // Optional: Change cursor to pointer to indicate row is clickable
+    });
+  });
+</script>
 @endsection
