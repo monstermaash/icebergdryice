@@ -15,11 +15,10 @@
     <div class="col-md-3">
       <div class="card dashboard text-center">
         <div class="card-header">
-          Total Sales
+          Total Online Sales
         </div>
         <div class="card-body">
           <h3>${{ number_format($totalSalesOnline, 2) }}</h3>
-          <p class="card-text">via CC or online orders</p>
           <p class="card-text stat"><span>27.9% Up</span> from last year</p>
         </div>
       </div>
@@ -27,11 +26,10 @@
     <div class="col-md-3">
       <div class="card dashboard text-center">
         <div class="card-header">
-          Total Sales
+          Total Manual Sales
         </div>
         <div class="card-body">
           <h3>${{ number_format($totalSalesManual, 2) }}</h3>
-          <p class="card-text">via Manual Payments</p>
           <p class="card-text stat"><span>26.6% Up</span> from last year</p>
         </div>
       </div>
@@ -39,7 +37,7 @@
     <div class="col-md-3">
       <div class="card dashboard text-center">
         <div class="card-header">
-          Dry Ice Unit Sold
+          Dry Ice Units Sold
         </div>
         <div class="card-body">
           <h3>{{ number_format($dryIceUnitSold, 2) }} lbs</h3>
@@ -50,7 +48,7 @@
     <div class="col-md-3">
       <div class="card dashboard text-center">
         <div class="card-header">
-          Styrofoam Box Unit Sold
+          Styrofoam Boxes Units Sold
         </div>
         <div class="card-body">
           <h3>{{ $styrofoamBoxUnitSold }} boxes</h3>
@@ -64,7 +62,7 @@
     <div class="col-md-6">
       <div class="table">
         <div class="table-header">
-          Last orders
+          Last Orders
         </div>
         <table>
           <thead>
@@ -84,7 +82,7 @@
               <td>{{ $order->customer_name }}</td>
               <td>{{ $order->delivery_date }}</td>
               <td class="status">{{ $order->status }}</td>
-              <td>{{ $order->total_cost }}</td>
+              <td>${{ $order->total_cost }}</td>
               <td>{{ $order->origin }}</td>
             </tr>
             @endforeach
@@ -96,7 +94,7 @@
     <div class="col-md-6">
       <div class="table mb-3">
         <div class="table-header">
-          CC Orders
+          Online Orders
         </div>
         <table>
           <thead>
@@ -114,7 +112,7 @@
             <tr>
               <td>{{ $order->customer_name }}</td>
               <td>{{ $order->delivery_date }}</td>
-              <td>{{ $order->amount_of_ice }}</td>
+              <td>{{ $order->amount_of_ice }} lbs</td>
               <td>{{ $order->amount_of_boxes }}</td>
               <td>{{ $order->address }}</td>
               <td><a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm">View</a></td>
@@ -146,7 +144,7 @@
               <td>{{ $order->customer_name }}</td>
               <td>{{ $order->delivery_date }}</td>
               <td class="status">{{ $order->status }}</td>
-              <td>{{ $order->total_cost }}</td>
+              <td>${{ $order->total_cost }}</td>
               <td>{{ $order->origin }}</td>
             </tr>
             @endforeach
