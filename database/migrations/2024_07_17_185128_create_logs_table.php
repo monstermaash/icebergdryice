@@ -12,8 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->integer('log_id')->primary();
-            $table->integer('user_id');
+            $table->integer('id')->primary();
+            $table->integer('customer_id');
             $table->integer('order_id');
             $table->integer('action_id');
             $table->timestamp('timestamp');

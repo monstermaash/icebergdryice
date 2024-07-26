@@ -28,8 +28,8 @@ class LogFilesCrudController extends CrudController
 
   protected function setupListOperation()
   {
-    CRUD::column('log_id')->label('Log ID');
-    CRUD::column('user_id')->label('User ID');
+    CRUD::column('id')->label('Log ID');
+    CRUD::column('customer_id')->label('User ID');
     CRUD::column('order_id')->label('Order ID');
     CRUD::column('action_id')->label('Action ID');
     CRUD::column('timestamp')->label('Timestamp');
@@ -39,7 +39,7 @@ class LogFilesCrudController extends CrudController
   {
     CRUD::setValidation(LogFileRequest::class);
 
-    CRUD::field('user_id')->label('User ID');
+    CRUD::field('customer_id')->label('User ID');
     CRUD::field('order_id')->label('Order ID');
     CRUD::field('action_id')->label('Action ID');
     CRUD::field('timestamp')->label('Timestamp');

@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
           <h3>${{ number_format($totalSalesOnline, 2) }}</h3>
-          <p class="card-text stat"><span>27.9% Up</span> from last year</p>
+          <!-- <p class="card-text stat"><span>27.9% Up</span> from last year</p> -->
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="card-body">
           <h3>${{ number_format($totalSalesManual, 2) }}</h3>
-          <p class="card-text stat"><span>26.6% Up</span> from last year</p>
+          <!-- <p class="card-text stat"><span>26.6% Up</span> from last year</p> -->
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="card-body">
           <h3>{{ number_format($dryIceUnitSold, 2) }} lbs</h3>
-          <p class="card-text stat"><span>27.0% Up</span> from last year</p>
+          <!-- <p class="card-text stat"><span>27.0% Up</span> from last year</p> -->
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="card-body">
           <h3>{{ $styrofoamBoxUnitSold }} boxes</h3>
-          <p class="card-text stat"><span>17.4% Up</span> from last year</p>
+          <!-- <p class="card-text stat"><span>17.4% Up</span> from last year</p> -->
         </div>
       </div>
     </div>

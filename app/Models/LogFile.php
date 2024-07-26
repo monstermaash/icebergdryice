@@ -12,13 +12,13 @@ class LogFile extends Model
   use HasFactory;
 
   protected $table = 'logs';
-  protected $primaryKey = 'log_id';
+  protected $primaryKey = 'id';
 
   public $incrementing = true;
   protected $keyType = 'int';
 
   protected $fillable = [
-    'user_id',
+    'customer_id',
     'order_id',
     'action_id',
     'timestamp',
